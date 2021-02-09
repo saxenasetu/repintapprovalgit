@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/test/Opa5","./arrangements/Startup","./MasterJourney","./NavigationJourney","./NotFoundJourney","./BusyJourney"],function(e,n){"use strict";e.extendConfig({arrangements:new n,viewNamespace:"vodafone.RepintApprov.repintapproval.view.",autoWait:true})});

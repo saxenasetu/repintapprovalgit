@@ -1,0 +1,324 @@
+<mvc:View xmlns="sap.m" xmlns:semantic="sap.f.semantic" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" controllerName="vodafone.RepintApprov.repintapproval.controller.Detail" height="100%" displayBlock="true">
+	<!--<semantic:SemanticPage id="detailPage" titleAreaShrinkRatio="1:1.6:1.6" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">-->
+	<semantic:SemanticPage id="detailPage" headerPinnable="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6"  showFooter="true">
+		<semantic:titleHeading>
+			<Title text="{RepintEmpHdrModel>/NOME}" level="H2"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<ObjectAttribute title="{i18n>RepintID}" text="{RepintEmpHdrModel>/IDSCHEDA}"/>
+			<ObjectAttribute title="{i18n>Status}" text="{RepintEmpHdrModel>/STATO}"/>
+		</semantic:headerContent>
+		<semantic:content>
+			<VBox class="sapUiSmallMargin">
+				<f:SimpleForm id="SimpleFormToolbar" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false" ariaLabelledBy="Title1">
+					<f:content>
+						<Table id="idRepintAppDtlTable" inset="false"  mode="SingleSelectMaster" selectionChange="onSelectTableRow" class="sapFSemanticPageAlignContent" width="auto">
+							<headerToolbar>
+								<OverflowToolbar>
+									<Title text="Repint Approval" level="H2"/>
+									<ToolbarSpacer/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column>
+									<Text text="Date"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Reperibilita"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Intervento"/>
+								</Column>
+								<Column>
+									<Text text="LPN"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem vAlign="Middle">
+									<cells>
+										<!--	<ObjectIdentifier title="{date}" text="{LPN}"/>-->
+										<Text text="{RepintEmpHdrModel>/ANNOMESE}"/>
+										<Text text="{RepintEmpHdrModel>/Reperibilita}"/>
+										<Text text="{RepintEmpHdrModel>/Intervento}"/>
+										<Text text="{RepintEmpHdrModel>/LPN}"/>
+										<!--							<Button type="Accept" enabled="{Approve}"  text="{path : 'Approve', formatter: '.Formatter.formatBtnText'}" press="onPress" />
+							<Button type="Reject" enabled="{Reject}"  text="{path : 'Reject', formatter: '.Formatter.formatBtnText'}" press="onPress" />
+							<Button icon="sap-icon://action" tooltip="Forward" enabled="{path : 'Forward', formatter: '.Formatter.formatForwardBtnText'}" type="Transparent" press="onPress" />
+-->
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+						<Toolbar id="idInterventoToolBar" ariaLabelledBy="Title3" visible="false">
+							<Title id="idInterventoTitle" text="Intervento Details"/>
+							<ToolbarSpacer/>
+						</Toolbar>
+					<t:Table id="idInterventoTable" rows="{RepintInterventiModel>/}" rowSelectionChange="onSelectTableRow1" visible="false" selectionMode="MultiToggle" visibleRowCount="3" ariaLabelledBy="title">
+							<t:columns>
+								<t:Column width="2rem" hAlign="Center">
+									<Label text="{i18n>No}" design="Standard"/>
+									<t:template>
+										<Text text="{RepintInterventiModel/no}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>LPN}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="true" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="6rem" hAlign="Center">
+									<Label text="{i18n>Data}" design="Standard"/>
+									<t:template>
+										<Text text="{RepintInterventiModel>/DATAREPERIBILITA}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="6rem" hAlign="Center">
+									<Label text="{i18n>OraInizio}" design="Standard"/>
+									<t:template>
+										<Text text="{RepintInterventiModel>/OraInizio}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="6rem" hAlign="Center">
+									<Label text="{i18n>OraFine}" design="Standard"/>
+									<t:template>
+										<Text text="{RepintInterventiModel>/ORAFINE}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="7rem" hAlign="Center">
+									<Label text="{i18n>Chiamatoda}" design="Standard"/>
+									<t:template>
+										<Text text="{RepintInterventiModel>/CHIAMATODA}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>Rip}" design="Standard"/>
+									<t:template>
+										<Text text="{RepintInterventiModel>/RIP}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="10rem" hAlign="Center">
+									<Label text="{i18n>Causa}" design="Standard"/>
+									<t:template>
+										<Text text="{RepintInterventiModel>/CAUSA}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>1h}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="false" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>1to2h}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="true" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>2to4h}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="false" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>4to6h}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="false" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>6to8h}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="false" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="4rem" hAlign="Center">
+									<Label text="{i18n>eqgt8h}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="false" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+							</t:columns>
+						</t:Table>
+						<Toolbar id="idReperibilitaToolBar" ariaLabelledBy="ReperibilitaTable" visible="false">
+							<Title id="idReperibilitaTitle" text="Reperibilita Details"/>
+							<ToolbarSpacer/>
+						</Toolbar>
+						<t:Table id="idReperibilitaTable" rows="{RepintInterventiModel>/}" rowSelectionChange="onSelectTableRow1" visible="false" selectionMode="MultiToggle" visibleRowCount="3" ariaLabelledBy="title">
+							<t:columns>
+								<t:Column width="2rem" hAlign="Center">
+									<Label text="{i18n>No}" design="Standard"/>
+									<t:template>
+										<Text text="{no}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>LPN}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="true" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="6rem" hAlign="Center">
+									<Label text="{i18n>Data}" design="Standard"/>
+									<t:template>
+										<Text text="{Data}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="6rem" hAlign="Center">
+									<Label text="{i18n>OraInizio}" design="Standard"/>
+									<t:template>
+										<Text text="{OraInizio}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="6rem" hAlign="Center">
+									<Label text="{i18n>OraFine}" design="Standard"/>
+									<t:template>
+										<Text text="{OraFine}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="7rem" hAlign="Center">
+									<Label text="{i18n>Chiamatoda}" design="Standard"/>
+									<t:template>
+										<Text text="{Chiamatodo}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>Rip}" design="Standard"/>
+									<t:template>
+										<Text text="{Rip}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="10rem" hAlign="Center">
+									<Label text="{i18n>Causa}" design="Standard"/>
+									<t:template>
+										<Text text="{Causa}" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>1h}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="false" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>1to2h}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="true" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>2to4h}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="false" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>4to6h}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="false" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="3rem" hAlign="Center">
+									<Label text="{i18n>6to8h}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="false" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="4rem" hAlign="Center">
+									<Label text="{i18n>eqgt8h}" design="Standard"/>
+									<t:template>
+										<CheckBox selected="false" textAlign="Center"/>
+									</t:template>
+								</t:Column>
+							</t:columns>
+						</t:Table>
+						<!--<Table id="idReperibilitaTable" mode="MultiSelect" inset="false" width="auto">-->
+						<!--	<columns>-->
+						<!--		<Column hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">-->
+						<!--			<Text text="No."/>-->
+						<!--		</Column>-->
+						<!--		<Column hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">-->
+						<!--			<Text text="LPN"/>-->
+						<!--		</Column>-->
+						<!--		<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">-->
+						<!--			<Text text="Data"/>-->
+						<!--		</Column>-->
+						<!--		<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">-->
+						<!--			<Text text="Ora Inizio"/>-->
+						<!--		</Column>-->
+						<!--		<Column hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">-->
+						<!--			<Text text="Ora Fine"/>-->
+						<!--		</Column>-->
+						<!--		<Column hAlign="Center" minScreenWidth="Tablet" demandPopin="true">-->
+						<!--			<Text text="Chiam ato da"/>-->
+						<!--		</Column>-->
+						<!--		<Column hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">-->
+						<!--			<Text text="Rip"/>-->
+						<!--		</Column>-->
+						<!--		<Column hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">-->
+						<!--			<Text text="Causa"/>-->
+						<!--		</Column>-->
+						<!--		<Column hAlign="Center" minScreenWidth="Tablet" demandPopin="true">-->
+						<!--			<Text text="1h"/>-->
+						<!--		</Column>-->
+						<!--		<Column hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">-->
+						<!--			<Text text="1-2h"/>-->
+						<!--		</Column>-->
+						<!--		<Column hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">-->
+						<!--			<Text text="2-4h"/>-->
+						<!--		</Column>-->
+						<!--		<Column hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">-->
+						<!--			<Text text="4-6h"/>-->
+						<!--		</Column>-->
+						<!--		<Column hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">-->
+						<!--			<Text text="6-8h"/>-->
+						<!--		</Column>-->
+						<!--		<Column hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">-->
+						<!--			<Text text=">=8h"/>-->
+						<!--			</Column>-->
+						<!--		</columns>-->
+						<!--		<items>-->
+						<!--			<ColumnListItem vAlign="Middle" type="Navigation">-->
+						<!--				<cells>-->
+						<!--					<CheckBox text="ColumnHeaders" select="onSelect"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--					<CheckBox text="Information" valueState="Information"/>-->
+						<!--				</cells>-->
+						<!--			</ColumnListItem>-->
+						<!--		</items>-->
+						<!--	</Table>-->
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</semantic:content>
+		<!--Semantic ShareMenu Buttons-->
+		<semantic:closeAction>
+			<semantic:CloseAction id="closeColumn" press=".onCloseDetailPress"/>
+		</semantic:closeAction>
+		<semantic:fullScreenAction>
+			<semantic:FullScreenAction id="enterFullScreen" visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"/>
+		</semantic:fullScreenAction>
+		<semantic:exitFullScreenAction>
+			<semantic:ExitFullScreenAction id="exitFullScreen" visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"/>
+		</semantic:exitFullScreenAction>
+		<!-- Custom Footer Content-->
+		<semantic:footerCustomActions>
+			<Button text="{i18n>GestisciDelegati}" press="onPressGestisciDelegati"/>
+			<Button text="{i18n>GestioneCalcoloeregole}" press="onPressGestioneCalcoloeregole"/>
+			<Button text="{i18n>Approva}" press="onPressApprove"/>
+			<Button text="{i18n>Rifiuta}" press="onPressReject"/>
+		</semantic:footerCustomActions>
+	</semantic:SemanticPage>
+</mvc:View>

@@ -1,0 +1,174 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:tnt="sap.tnt" controllerName="vodafone.RepintApprov.repintapproval.controller.GestioneCalcoloeregole"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Importi Interventi"
+				class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+				showNavButton="true" navButtonPress="handleBack">
+				<content>
+					<TabContainer id="idTabContainer" class="sapUiResponsiveContentPadding sapUiResponsivePadding--header">
+						<items>
+							<TabContainerItem name="{i18n>ImportiInterventi}" additionalText="{i18n>ImportiInterventi}" icon="sap-icon://notes"
+								iconTooltip="{i18n>ImportiInterventi}">
+								<content>
+									<Page
+										class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer">
+										<content>
+											<Table id="idTableImpInv" inset="false" headerText="{i18n>ImportiInterventi}" selectionChange="onRequestSelect" mode="None">
+												<columns>
+													<Column minScreenWidth="Tablet" width="1rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="{i18n>TipoGiorno}" class="fontBoldClass"/>
+													</Column>
+													<Column minScreenWidth="Tablet" width="1rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="{i18n>Orainizio}" class="fontBoldClass"/>
+													</Column>
+													<Column minScreenWidth="Tablet" width="1rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="{i18n>Orafine}" class="fontBoldClass"/>
+													</Column>
+													<Column minScreenWidth="Tablet" width="1rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="{i18n>Valore}" class="fontBoldClass"/>
+													</Column>
+													<Column minScreenWidth="Tablet" width="1rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="{i18n>Livello}" class="fontBoldClass"/>
+													</Column>
+													<Column minScreenWidth="Tablet" width="1rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="" class="fontBoldClass"/>
+													</Column>
+													<Column minScreenWidth="Tablet" width="1rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="" class="fontBoldClass"/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem >
+														<cells>
+															<Select id="idTipoCollection" forceSelection="false" selectedKey="{TipooModel>/SelectedTipo}"
+																items="{ path: 'TipooModel>/TipoGiornoCollection', sorter: { path: 'TipoGioId' } }" required="true">
+																<core:Item key="{TipooModel>TipoGioId}" text="{TipooModel>Value}"/>
+															</Select>
+															<TimePicker id="TP1" valueFormat="HH:mm" displayFormat="HH:mm" change="handleChange" placeholder="Enter Ora inizio"/>
+															<TimePicker id="TP2" valueFormat="HH:mm" displayFormat="HH:mm" change="handleChange" placeholder="Enter Ora fine"/>
+															<Input required="true"/>
+															<Select id="idLivelloCollection" forceSelection="false" selectedKey="{livelloModel>/SelectedLivello}"
+																items="{ path: 'livelloModel>/LivelloCollection', sorter: { path: 'ValoreId' } }" required="true">
+																<core:Item key="{livelloModel>ValoreId}" text="{livelloModel>Value}"/>
+															</Select>
+															<Button icon="sap-icon://sys-add" text="Aggiung" type="Emphasized" enabled="{MainModel1>oButton1}" press="onAddImpIntItem"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+											<Table id="idTableImpIntData" items="{ImpIntDataModel>/ImportIInterCollection}" inset="false" noDataText="{i18n>nodata}" growing="true"
+												growingThreshold="1000" growingScrollToLoad="true" mode="None">
+												<columns>
+													<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="" class="fontBoldClass"/>
+													</Column>
+													<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="" class="fontBoldClass"/>
+													</Column>
+													<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="" class="fontBoldClass"/>
+													</Column>
+													<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="" class="fontBoldClass"/>
+													</Column>
+													<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="" class="fontBoldClass"/>
+													</Column>
+													<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="" class="fontBoldClass"/>
+													</Column>
+													<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">
+														<Text text="" class="fontBoldClass"/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem >
+														<cells>
+															<Input value="{ImpIntDataModel>TipoGiorno}" enabled="false"/>
+															<Input value="{ImpIntDataModel>OraInizio}" enabled="false"/>
+															<Input value="{ImpIntDataModel>Orafine}" enabled="false"/>
+															<Input value="{ImpIntDataModel>Valore}" enabled="false"/>
+															<Input value="{ImpIntDataModel>Livello}" enabled="false"/>
+															<ToggleButton enabled="{MainModel1>oEdit}" text="Modifica"  width="0.3rem" icon="sap-icon://edit" press="onEdit"/>
+															<Button enabled="{MainModel1>oDelete}" text="Elimina"  width="0.3rem" icon="sap-icon://delete" press="onDelete"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+											<!--<Table id="idTableImpIntData" items="{ImpIntDataModel>/ImportIInterCollection}" inset="false" noDataText="{i18n>nodata}" growing="true"-->
+											<!--	growingThreshold="1000" growingScrollToLoad="true" mode="None">-->
+											<!--	<columns>-->
+											<!--		<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">-->
+											<!--			<Text text="" class="fontBoldClass"/>-->
+											<!--		</Column>-->
+											<!--		<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">-->
+											<!--			<Text text="" class="fontBoldClass"/>-->
+											<!--		</Column>-->
+											<!--		<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">-->
+											<!--			<Text text="" class="fontBoldClass"/>-->
+											<!--		</Column>-->
+											<!--		<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">-->
+											<!--			<Text text="" class="fontBoldClass"/>-->
+											<!--		</Column>-->
+											<!--		<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">-->
+											<!--			<Text text="" class="fontBoldClass"/>-->
+											<!--		</Column>-->
+											<!--		<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">-->
+											<!--			<Text text="" class="fontBoldClass"/>-->
+											<!--		</Column>-->
+											<!--		<Column minScreenWidth="Tablet" width="0.5rem" vAlign="Middle" hAlign="Center" demandPopin="true">-->
+											<!--			<Text text="" class="fontBoldClass"/>-->
+											<!--		</Column>-->
+											<!--	</columns>-->
+											<!--	<items>-->
+											<!--		<ColumnListItem >-->
+											<!--			<cells>-->
+											<!--				<Input value="{ImpIntDataModel>TipoGiorno}" enabled="false"/>-->
+											<!--				<Input value="{ImpIntDataModel>OraInizio}" enabled="false"/>-->
+											<!--				<Input value="{ImpIntDataModel>Orafine}" enabled="false"/>-->
+											<!--				<Input value="{ImpIntDataModel>Valore}" enabled="false"/>-->
+											<!--				<Input value="{ImpIntDataModel>Livello}" enabled="false"/>-->
+											<!--				<ToggleButton enabled="{MainModel1>oEdit}" text="Modifica" icon="sap-icon://edit" press="onEdit"/>-->
+											<!--				<Button enabled="{MainModel1>oDelete}" text="Elimina" icon="sap-icon://delete" press="onDelete"/>-->
+											<!--			</cells>-->
+											<!--		</ColumnListItem>-->
+											<!--	</items>-->
+											<!--</Table>-->
+										</content>
+										<footer>
+											<OverflowToolbar>
+												<ToolbarSpacer/>
+												<Button text="{i18n>Stampa}" type="Accept" press="onPressStampa"/>
+											</OverflowToolbar>
+										</footer>
+									</Page>
+								</content>
+							</TabContainerItem>
+							<TabContainerItem name="{i18n>ImportiInterventiLPN}" additionalText="{i18n>ImportiInterventiLPN}" icon="sap-icon://notes"
+								iconTooltip="{i18n>ImportiInterventiLPN}">
+								<content></content>
+							</TabContainerItem>
+							<TabContainerItem name="{i18n>ImportiReperibilita}" additionalText="{i18n>ImportiReperibilita}" icon="sap-icon://notes"
+								iconTooltip="{i18n>ImportiReperibilita}">
+								<content></content>
+							</TabContainerItem>
+							<TabContainerItem name="{i18n>RegoleCompensativi}" additionalText="{i18n>RegoleCompensativi}" icon="sap-icon://notes"
+								iconTooltip="{i18n>RegoleCompensativi}">
+								<content></content>
+							</TabContainerItem>
+							<TabContainerItem name="{i18n>RegoleCompensativiMultipli}" additionalText="{i18n>RegoleCompensativiMultipli}" icon="sap-icon://notes"
+								iconTooltip="{i18n>RegoleCompensativiMultipli}">
+								<content></content>
+							</TabContainerItem>
+							<TabContainerItem name="{i18n>RegoleBlocco}" additionalText="{i18n>RegoleBlocco}" icon="sap-icon://notes" iconTooltip="{i18n>RegoleBlocco}">
+								<content></content>
+							</TabContainerItem>
+						</items>
+					</TabContainer>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

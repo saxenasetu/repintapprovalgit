@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:layout="sap.ui.layout">
+	<Dialog title="{i18n>EmpDialog}" contentWidth="750px" contentHeight="300px" resizable="true" draggable="true"
+		afterOpen="onValueHelpUserDialogAfterOpen">
+		<VBox class="sapUiSmallMarginBeginEnd">
+			<HBox justifyContent="SpaceBetween">
+				<SearchField placeholder="{i18n>FirstName}"/>
+				<SearchField placeholder="{i18n>LastName}"/>
+				<SearchField placeholder="{i18n>EmpID}"/>
+<!--			<SearchField
+			id="searchField"
+			width="50%"
+			placeholder="Search for..."
+			enableSuggestions="true"
+			search=".onSearch"
+			suggest=".onSuggest"
+			suggestionItems="{
+				path: '/ProductCollection',
+				sorter: { path: 'Name' }
+			}">
+			<SuggestionItem text="{Name}" description="{path:'Price'} {path:'CurrencyCode'}" key="{ProductId}" />
+		</SearchField>	-->		
+		
+				<Button text="{i18n>Search}" icon="sap-icon://search" press="onSearchEmpSearch"/>
+				<Button text="{i18n>Reset}" icon="sap-icon://reset" press="onResetEmpSearch"/>
+			</HBox>
+		</VBox>
+		<Table id="idEmpSearchTable" mode="SingleSelectMaster" noDataText="{i18n>DataNotFound}" inset="false" itemPress="onUserSelectionValueHelpUserPress">
+			<columns>
+				<Column hAlign="Center">
+					<Text text="{i18n>FirstName}"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>LastName}"/>
+				</Column>
+				<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>EmpID}"/>
+				</Column>
+			</columns>
+		</Table>
+		<buttons>
+			<Button text="{i18n>Ok}" icon="sap-icon://accept" press="onOkValueHelpUserDialog"/>
+			<Button text="{i18n>Close}" icon="sap-icon://decline" press="onCloseValueHelpUserDialog"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
